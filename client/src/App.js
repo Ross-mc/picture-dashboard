@@ -12,31 +12,11 @@ const App = () => {
   const [currentImage, setImage] = useState("");
   const [photoInterval, setPhotoInterval] = useState(0.25);
   const [changeImage, setChangeImage] = useState(false);
-
-  let timeSinceInterval = 0;
-
-
-  const intervalEvery1000milli = () => {
-    setInterval(() => {
-      if (timeSinceInterval > photoInterval * 60 * 1000) {
-        console.log(currentImage)
-        setChangeImage(currentTime)
-        selectRandomImage();
-        timeSinceInterval = 0;
-        console.log(currentImage)
-      }
-      const date = new Date();
-      setDate(date.toDateString());
-      setTime(date.toLocaleTimeString());
-      timeSinceInterval += 1000
-    }
-      , 1000)
-  }
-
+  const [timeSinceInterval, setTimeSinceInterval] = useState(0);
 
   const selectRandomImage = () => {
     const randomNum = Math.floor(Math.random() * currentImages.length);
-    setImage(currentImages[randomNum])
+    setImage(currentImages[randomNum]);
   }
 
   useEffect(() => {
@@ -48,12 +28,22 @@ const App = () => {
     selectRandomImage();
   }, [currentImages])
 
+  useEffect(() => {
+    setTimeout(() => {
+      setTimeSinceInterval(timeSinceInterval + 1000)
+    }, 1000)
+    if (timeSinceInterval % (photoInterval * 60 * 1000) === 0 && timeSinceInterval !== 0) {
+      setChangeImage(!changeImage);
+    }
+    const date = new Date();
+    setDate(date.toDateString());
+    setTime(date.toLocaleTimeString());
+  }, [timeSinceInterval])
+
 
   useEffect(async () => {
     const responseFromPexels = await API.getImages();
-    setImages(responseFromPexels.data.photos);//hh
-    intervalEvery1000milli();
-
+    setImages(responseFromPexels.data.photos);
   }, [])
 
   return (
