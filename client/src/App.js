@@ -27,7 +27,7 @@ const App = () => {
     setTimeout(() => {
       setTimeSinceInterval(timeSinceInterval + 1000)
     }, 1000)
-    if (timeSinceInterval % (photoInterval * 60 * 1000) === 0 && timeSinceInterval !== 0) {
+    if (timeSinceInterval % (photoInterval * 60 * 1000) === 0) {
       selectRandomImage()
     }
     const date = new Date();
