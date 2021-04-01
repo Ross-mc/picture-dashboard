@@ -1,9 +1,29 @@
-import logo from './logo.svg';
+import React, { useEffect, useState } from "react"
+
+import Clock from "./components/Clock"
+
 import './App.css';
 
-function App() {
+const App = () => {
+  const tick = () => {
+    setInterval(() => {
+      const date = new Date();
+      setDate(date.toDateString());
+      setTime(date.toLocaleTimeString())
+    }
+      , 1000)
+  }
+
+  const [currentDate, setDate] = useState(undefined);
+  const [currentTime, setTime] = useState(undefined);
+
+  useEffect(tick, [])
+
+
+
   return (
     <div className="App">
+      <Clock date={currentDate} time={currentTime} />
     </div>
   );
 }
