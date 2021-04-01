@@ -12,15 +12,10 @@ const App = () => {
   const [currentImage, setImage] = useState("");
   const [photoInterval, setPhotoInterval] = useState(1)
 
-  useEffect(async () => {
-    updateCurrentDateTime();
-    const responsFromPexels = await API.getImages();
-    setImages(responsFromPexels.data.photos);
-    cycleImages();
-  }, [])
 
 
-  const updateCurrentDateTime = () => {
+
+  const intervalEvery1000milli = () => {
     setInterval(() => {
       const date = new Date();
       setDate(date.toDateString());
@@ -29,27 +24,36 @@ const App = () => {
       , 1000)
   }
 
-  const cycleImages = () => {
-
-    setInterval(() => {
-      console.log('cycle images has been called')
-      selectRandomImage()
-    }, 1000 * 60 * photoInterval)
-  }
 
   const selectRandomImage = () => {
     const randomNum = Math.floor(Math.random() * currentImages.length);
-    console.log('currentimages', currentImages)
     setImage(currentImages[randomNum])
   }
 
+  useEffect(() => {
+    console.log(currentImage)
+
+  }, [currentImage])
 
 
+  useEffect(() => {
+    selectRandomImage();
 
+  }, [currentImages])
+
+
+  useEffect(async () => {
+    const responseFromPexels = await API.getImages();
+    setImages(responseFromPexels.data.photos);//hh
+    // selectRandomImage();
+    // intervalEvery1000milli();
+    // hello
+
+  }, [])
   return (
     <div className="App">
       <Clock date={currentDate} time={currentTime} />
-      {/* <Background currentImg={currentImage} /> */}
+      {currentImage && <Background currentImg={currentImage} />}
     </div>
   );
 }
