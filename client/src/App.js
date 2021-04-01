@@ -19,9 +19,11 @@ const App = () => {
   const intervalEvery1000milli = () => {
     setInterval(() => {
       if (timeSinceInterval > photoInterval * 60 * 1000) {
-        setChangeImage(!changeImage)
+        console.log(currentImage)
+        setChangeImage(currentTime)
         selectRandomImage();
         timeSinceInterval = 0;
+        console.log(currentImage)
       }
       const date = new Date();
       setDate(date.toDateString());
