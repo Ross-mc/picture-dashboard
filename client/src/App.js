@@ -11,7 +11,6 @@ const App = () => {
   const [currentImages, setImages] = useState([]);
   const [currentImage, setImage] = useState("");
   const [photoInterval, setPhotoInterval] = useState(0.25);
-  const [changeImage, setChangeImage] = useState(false);
   const [timeSinceInterval, setTimeSinceInterval] = useState(0);
 
   const selectRandomImage = () => {
@@ -21,14 +20,14 @@ const App = () => {
 
   useEffect(() => {
     selectRandomImage();
-  }, [changeImage, currentImages])
+  }, [currentImages])
 
   useEffect(() => {
     setTimeout(() => {
       setTimeSinceInterval(timeSinceInterval + 1000)
     }, 1000)
     if (timeSinceInterval % (photoInterval * 60 * 1000) === 0 && timeSinceInterval !== 0) {
-      setChangeImage(!changeImage);
+      selectRandomImage()
     }
     const date = new Date();
     setDate(date.toDateString());
