@@ -21,12 +21,7 @@ const App = () => {
 
   useEffect(() => {
     selectRandomImage();
-  }, [changeImage])
-
-
-  useEffect(() => {
-    selectRandomImage();
-  }, [currentImages])
+  }, [changeImage, currentImages])
 
   useEffect(() => {
     setTimeout(() => {
