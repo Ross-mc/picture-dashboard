@@ -32,6 +32,8 @@
   font-weight:300;
   text-align:center;
   transition: all 0.2s;
+  background: none;
+  opacity: 0.4;
 }
 
 .btn-primary{
@@ -40,7 +42,16 @@
 }
 
 .btn-primary:hover{
-  color:#000000;
+  color:#222;
+  border-color: #222;
   background-color:#FFFFFF;
+  opacity: 0.8;
+}
+
+#Customise{
+  position: fixed;
+  top: 1vh;
+  right: 1vw;
+
 }
  

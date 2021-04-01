@@ -43,7 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <Button type={"primary"} text={"customise"} onClickHandler={() => console.log('I was clicked')} />
+      <Button type={"primary"} text={"Customise"} onClickHandler={() => console.log('I was clicked')} />
       <Clock date={currentDate} time={currentTime} />
       {currentImage && <Background currentImg={currentImage} />}
     </div>
