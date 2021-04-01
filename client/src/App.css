@@ -20,3 +20,27 @@
   color: white;
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
 }
+
+.btn{
+  display:inline-block;
+  padding:0.35em 1.2em;
+  border:0.1em solid;
+  margin:0 0.3em 0.3em 0;
+  border-radius:0.12em;
+  box-sizing: border-box;
+  text-decoration:none;
+  font-weight:300;
+  text-align:center;
+  transition: all 0.2s;
+}
+
+.btn-primary{
+  color:#FFFFFF;
+  border-color: #FFFFFF;
+}
+
+.btn-primary:hover{
+  color:#000000;
+  background-color:#FFFFFF;
+}
+ 

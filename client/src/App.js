@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './App.css';
 import Clock from "./components/Clock"
 import Background from "./components/Background";
+import Button from "./components/Button"
 import API from "./utils/API"
 
 const App = () => {
@@ -42,6 +43,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <Button type={"primary"} text={"customise"} onClickHandler={() => console.log('I was clicked')} />
       <Clock date={currentDate} time={currentTime} />
       {currentImage && <Background currentImg={currentImage} />}
     </div>
