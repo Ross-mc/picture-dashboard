@@ -6,8 +6,8 @@ import API from "./utils/API"
 
 const App = () => {
 
-  const [currentDate, setDate] = useState(undefined);
-  const [currentTime, setTime] = useState(undefined);
+  const [currentDate, setDate] = useState(new Date().toDateString());
+  const [currentTime, setTime] = useState(new Date().toLocaleTimeString());
   const [currentImages, setImages] = useState([]);
   const [currentImage, setImage] = useState("");
   const [photoInterval, setPhotoInterval] = useState(0.25);
