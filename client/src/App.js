@@ -38,6 +38,11 @@ const App = () => {
   const selectRandomImage = () => {
     const randomNum = Math.floor(Math.random() * currentImages.length);
     setImage(currentImages[randomNum]);
+  };
+
+  const fetchDataFromPixabay = async () => {
+    const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
+    setImages(responseFromPixabay.data.hits);
   }
 
   useEffect(() => {
@@ -64,15 +69,11 @@ const App = () => {
     const date = new Date();
     setDate(date.toDateString());
     setTime(date.toLocaleTimeString([], timeOptions));
-  }, [timeSinceInterval])
+  }, [timeSinceInterval]);
 
 
   useEffect(() => {
-    (async function () {
-      const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
-      setImages(responseFromPixabay.data.hits);
-    }())
-
+    fetchDataFromPixabay()
   }, [settingsState.photo.searchTerm]);
 
   const toggleTaskbar = () => {
