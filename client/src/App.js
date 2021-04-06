@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './App.css';
+import SettingsContext from "./utils/context/SettingsContext"
 import Clock from "./components/Clock"
 import Background from "./components/Background";
 import Button from "./components/Button"
@@ -7,12 +8,30 @@ import API from "./utils/API"
 import Taskbar from "./components/Taskbar";
 
 const App = () => {
+  const [settingsState, setSettingsState] = useState({
+    timeDisplay: {
+      show: true,
+      format: 24,
+      seconds: true
+    },
+    dateDisplay: {
+      show: true,
+      day: true,
+      format: "long"
+    },
+    font: {
+      color: "#FFFFFF"
+    },
+    photo: {
+      interval: 0.25,
+      searchTerm: "landscape"
+    }
+  })
 
   const [currentDate, setDate] = useState(new Date().toDateString());
   const [currentTime, setTime] = useState(new Date().toLocaleTimeString());
   const [currentImages, setImages] = useState([]);
   const [currentImage, setImage] = useState("");
-  const [photoInterval, setPhotoInterval] = useState(0.25);
   const [timeSinceInterval, setTimeSinceInterval] = useState(0);
   const [displayTaskbar, setTaskbar] = useState(false);
 
@@ -29,7 +48,7 @@ const App = () => {
     setTimeout(() => {
       setTimeSinceInterval(timeSinceInterval + 1000)
     }, 1000)
-    if (timeSinceInterval % (photoInterval * 60 * 1000) === 0) {
+    if (timeSinceInterval % (settingsState.photo.interval * 60 * 1000) === 0) {
       selectRandomImage()
     }
     const date = new Date();
@@ -40,7 +59,6 @@ const App = () => {
 
   useEffect(async () => {
     const responseFromPixabay = await API.getImages();
-    console.log(responseFromPixabay)
     setImages(responseFromPixabay.data.hits);
   }, []);
 
@@ -50,9 +68,11 @@ const App = () => {
 
   return (
     <div className="App">
-      {displayTaskbar ? <Taskbar toggleTaskbar={toggleTaskbar} /> : <Button type={"primary"} text={"Customise"} onClickHandler={toggleTaskbar} />}
-      <Clock date={currentDate} time={currentTime} />
-      {currentImage && <Background currentImg={currentImage} />}
+      <SettingsContext.Provider value={settingsState}>
+        {displayTaskbar ? <Taskbar toggleTaskbar={toggleTaskbar} /> : <Button type={"primary"} text={"Customise"} onClickHandler={toggleTaskbar} />}
+        <Clock date={currentDate} time={currentTime} />
+        {currentImage && <Background currentImg={currentImage} />}
+      </SettingsContext.Provider>
     </div>
   );
 }

@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import SettingsContext from "../utils/context/SettingsContext";
 
 const Clock = ({ date, time }) => {
+  const { font } = useContext(SettingsContext)
   return (
-    <div className="clock">
+    <div className="clock" style={{ color: font.color }}>
       <h1>{time}</h1>
       <p>{date}</p>
     </div>
