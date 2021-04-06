@@ -51,14 +51,24 @@ const App = () => {
     if (timeSinceInterval % (settingsState.photo.interval * 60 * 1000) === 0) {
       selectRandomImage()
     }
+    const { timeDisplay } = settingsState
+
+    const timeOptions = {
+      hour12: timeDisplay.hour12,
+      hour: "2-digit",
+      minute: "2-digit"
+    }
+    if (timeDisplay.seconds) {
+      timeOptions.second = "2-digit"
+    }
     const date = new Date();
     setDate(date.toDateString());
-    setTime(date.toLocaleTimeString([], { hour12: settingsState.timeDisplay.hour12 }));
+    setTime(date.toLocaleTimeString([], timeOptions));
   }, [timeSinceInterval])
 
 
   useEffect(() => {
-    (async function fetchData() {
+    (async function () {
       const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
       setImages(responseFromPixabay.data.hits);
     }())
