@@ -56,6 +56,11 @@
   position: fixed;
   top: 1vh;
   right: 1vw;
+}
 
+.btn-taskbar:hover{
+  background-color: #3a3d3f;
+  opacity: 1;
+  color: #FFFFFF
 }
  

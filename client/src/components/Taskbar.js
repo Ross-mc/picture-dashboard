@@ -11,8 +11,9 @@ const Taskbar = ({ toggleTaskbar }) => {
     height: "100%",
     width: "20vw",
     backgroundColor: "#b2bec3",
-    opacity: "0.4",
-    zIndex: 100
+    opacity: 0.8,
+    zIndex: 100,
+    color: "#2d3436"
   }
 
   return (
