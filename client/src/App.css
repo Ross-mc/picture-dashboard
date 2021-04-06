@@ -36,6 +36,10 @@
   opacity: 0.5;
 }
 
+.btn:hover{
+  cursor: pointer;
+}
+
 .btn-primary{
   color:#FFFFFF;
   border-color: #FFFFFF;

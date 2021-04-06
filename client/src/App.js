@@ -4,6 +4,7 @@ import Clock from "./components/Clock"
 import Background from "./components/Background";
 import Button from "./components/Button"
 import API from "./utils/API"
+import Taskbar from "./components/Taskbar";
 
 const App = () => {
 
@@ -13,6 +14,7 @@ const App = () => {
   const [currentImage, setImage] = useState("");
   const [photoInterval, setPhotoInterval] = useState(0.25);
   const [timeSinceInterval, setTimeSinceInterval] = useState(0);
+  const [displayTaskbar, setTaskbar] = useState(false);
 
   const selectRandomImage = () => {
     const randomNum = Math.floor(Math.random() * currentImages.length);
@@ -40,11 +42,15 @@ const App = () => {
     const responseFromPixabay = await API.getImages();
     console.log(responseFromPixabay)
     setImages(responseFromPixabay.data.hits);
-  }, [])
+  }, []);
+
+  const toggleTaskbar = () => {
+    setTaskbar(!displayTaskbar)
+  }
 
   return (
     <div className="App">
-      <Button type={"primary"} text={"Customise"} onClickHandler={() => console.log('I was clicked')} />
+      {displayTaskbar ? <Taskbar toggleTaskbar={toggleTaskbar} /> : <Button type={"primary"} text={"Customise"} onClickHandler={toggleTaskbar} />}
       <Clock date={currentDate} time={currentTime} />
       {currentImage && <Background currentImg={currentImage} />}
     </div>
