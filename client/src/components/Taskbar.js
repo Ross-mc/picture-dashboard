@@ -18,7 +18,7 @@ const Taskbar = ({ toggleTaskbar }) => {
 
   return (
     <div id="taskbar" style={styles}>
-      <h1>Taskbar</h1>
+      <h1>Settings</h1>
       <Button onClickHandler={toggleTaskbar} text={"Close"} type={"taskbar"} />
     </div>
   )

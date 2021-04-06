@@ -1,22 +1,22 @@
 import { createContext } from "react";
-
+// the 'schema' of the settings context is provided here but the valued are controlled by state in APP.js
 const SettingsContext = createContext({
   timeDisplay: {
-    show: true,
-    format: 24,
-    seconds: true
+    show: undefined,
+    hour12: undefined,
+    seconds: undefined
   },
   dateDisplay: {
-    show: true,
-    day: true,
-    format: "long"
+    show: undefined,
+    day: undefined,
+    format: undefined
   },
   font: {
-    color: "#FFFFFF"
+    color: undefined
   },
   photo: {
-    interval: 0.25,
-    searchTerm: "landscape"
+    interval: undefined,
+    searchTerm: undefined
   }
 });
 

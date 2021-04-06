@@ -11,7 +11,7 @@ const App = () => {
   const [settingsState, setSettingsState] = useState({
     timeDisplay: {
       show: true,
-      format: 24,
+      hour12: false,
       seconds: true
     },
     dateDisplay: {
@@ -53,13 +53,16 @@ const App = () => {
     }
     const date = new Date();
     setDate(date.toDateString());
-    setTime(date.toLocaleTimeString());
+    setTime(date.toLocaleTimeString([], { hour12: settingsState.timeDisplay.hour12 }));
   }, [timeSinceInterval])
 
 
-  useEffect(async () => {
-    const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
-    setImages(responseFromPixabay.data.hits);
+  useEffect(() => {
+    (async function fetchData() {
+      const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
+      setImages(responseFromPixabay.data.hits);
+    }())
+
   }, [settingsState.photo.searchTerm]);
 
   const toggleTaskbar = () => {
