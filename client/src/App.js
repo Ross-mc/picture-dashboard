@@ -43,6 +43,10 @@ const App = () => {
   const fetchDataFromPixabay = async () => {
     const responseFromPixabay = await API.getImages(settingsState.photo.searchTerm);
     setImages(responseFromPixabay.data.hits);
+  };
+
+  const toggleTaskbar = () => {
+    setTaskbar(!displayTaskbar)
   }
 
   useEffect(() => {
@@ -76,9 +80,7 @@ const App = () => {
     fetchDataFromPixabay()
   }, [settingsState.photo.searchTerm]);
 
-  const toggleTaskbar = () => {
-    setTaskbar(!displayTaskbar)
-  }
+
 
   return (
     <div className="App">
