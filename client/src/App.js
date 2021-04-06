@@ -37,8 +37,9 @@ const App = () => {
 
 
   useEffect(async () => {
-    const responseFromPexels = await API.getImages();
-    setImages(responseFromPexels.data.photos);
+    const responseFromPixabay = await API.getImages();
+    console.log(responseFromPixabay)
+    setImages(responseFromPixabay.data.hits);
   }, [])
 
   return (
