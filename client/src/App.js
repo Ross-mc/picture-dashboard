@@ -8,33 +8,6 @@ import API from "./utils/API"
 import Taskbar from "./components/Taskbar";
 
 const App = () => {
-  // const [state, setstate] = useState({
-  //   timeDisplay: {
-  //     show: true,
-  //     hour12: false,
-  //     seconds: true
-  //   },
-  //   dateDisplay: {
-  //     show: true,
-  //     day: true,
-  //     format: "long"
-  //   },
-  //   font: {
-  //     color: "#FFFFFF"
-  //   },
-  //   photo: {
-  //     interval: 0.25,
-  //     searchTerm: "landscape"
-  //   },
-  //   onChange: (event) => {
-  //     event.preventDefault();
-  //     const stateObj = { ...state }
-  //     if (event.target.name === "timeDisplay") {
-  //       stateObj.timeDisplay.show = !stateObj.timeDisplay.show
-  //       setstate(stateObj)
-  //     }
-  //   }
-  // });
 
   const [state] = useSettingsContext();
 
