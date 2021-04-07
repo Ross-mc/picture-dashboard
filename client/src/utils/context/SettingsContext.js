@@ -15,7 +15,7 @@ const initialState = {
     color: "#FFFFFF",
   },
   photo: {
-    interval: 0.25,
+    interval: 0.5,
     searchTerm: "landscape",
   },
 };
@@ -48,9 +48,12 @@ const reducer = (state, action) => {
       tempState.dateDisplay.format =
         tempState.dateDisplay.format === "long" ? "short" : "long";
       return tempState;
-      case "color":
-        tempState.font.color = action.payload;
-        return tempState;
+    case "color":
+      tempState.font.color = action.payload;
+      return tempState;
+    case "interval":
+      tempState.photo.interval = parseFloat(action.payload);
+      return tempState;
     default:
       return tempState;
   }

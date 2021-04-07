@@ -1,7 +1,6 @@
 import { useSettingsContext } from "../utils/context/SettingsContext";
 
 const SettingsForm = () => {
-
   const [{ timeDisplay, dateDisplay, font }, dispatch] = useSettingsContext();
   return (
     <form>
@@ -62,7 +61,25 @@ const SettingsForm = () => {
       <fieldset>
         <legend>Font</legend>
         <label htmlFor="font-color">Font Colour</label>
-        <input type="color" name="font-color" id="font-color" value={font.color} onInput={(e) => dispatch({type: "color", payload: e.target.value})}/>
+        <input
+          type="color"
+          name="font-color"
+          id="font-color"
+          value={font.color}
+          onInput={(e) => dispatch({ type: "color", payload: e.target.value })}
+        />
+      </fieldset>
+      <fieldset>
+        <legend>Photos</legend>
+        <label htmlFor="interval">Interval</label>
+        <select name="interval" id="interval" onChange={(e) => {console.log(e.target.value);dispatch({type: "interval", payload: e.target.value})}}>
+          <option value="0.25">15 Seconds</option>
+          <option value="0.5">30 Seconds</option>
+          <option value="1">1 Minutes</option>
+          <option value="2">2 Minutes</option>
+          <option value="5">5 Minutes</option>
+          <option value="10">10 Minutes</option>
+        </select>
       </fieldset>
     </form>
   );
