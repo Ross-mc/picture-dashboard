@@ -72,13 +72,22 @@ const SettingsForm = () => {
       <fieldset>
         <legend>Photos</legend>
         <label htmlFor="interval">Interval</label>
-        <select name="interval" id="interval" onChange={(e) => {console.log(e.target.value);dispatch({type: "interval", payload: e.target.value})}}>
+        <select name="interval" id="interval" onChange={(e) => {dispatch({type: "interval", payload: e.target.value})}}>
           <option value="0.25">15 Seconds</option>
           <option value="0.5">30 Seconds</option>
           <option value="1">1 Minutes</option>
           <option value="2">2 Minutes</option>
           <option value="5">5 Minutes</option>
           <option value="10">10 Minutes</option>
+        </select>
+        <label htmlFor="category">Category</label>
+        <select name="category" id="category" onChange={(e) => {dispatch({type: "category", payload: e.target.value})}}>
+          <option value="landscape">Landscape</option>
+          <option value="cityscape">City</option>
+          <option value="wildlife">Wildlife</option>
+          <option value="mountains">Mountains</option>
+          <option value="sea">Sea</option>
+          <option value="astronomy">Space</option>
         </select>
       </fieldset>
     </form>

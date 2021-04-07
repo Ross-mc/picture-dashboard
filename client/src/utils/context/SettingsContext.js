@@ -15,7 +15,7 @@ const initialState = {
     color: "#FFFFFF",
   },
   photo: {
-    interval: 0.5,
+    interval: 0.25,
     searchTerm: "landscape",
   },
 };
@@ -53,6 +53,9 @@ const reducer = (state, action) => {
       return tempState;
     case "interval":
       tempState.photo.interval = parseFloat(action.payload);
+      return tempState;
+    case "category":
+      tempState.photo.searchTerm = action.payload;
       return tempState;
     default:
       return tempState;
