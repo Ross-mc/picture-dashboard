@@ -1,24 +1,47 @@
-import { createContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 // the 'schema' of the settings context is provided here but the valued are controlled by state in APP.js
-const SettingsContext = createContext({
+const initialState = {
   timeDisplay: {
-    show: undefined,
-    hour12: undefined,
-    seconds: undefined
+    show: true,
+    hour12: false,
+    seconds: true
   },
   dateDisplay: {
-    show: undefined,
-    day: undefined,
-    format: undefined
+    show: true,
+    day: true,
+    format: "long"
   },
   font: {
-    color: undefined
+    color: "#FFFFFF"
   },
   photo: {
-    interval: undefined,
-    searchTerm: undefined
-  },
-  onChange: () => { }
-});
+    interval: 0.25,
+    searchTerm: "landscape"
+  }
+}
+const SettingsContext = createContext()
 
-export default SettingsContext
+const { Provider } = SettingsContext;
+
+const reducer = (state, action) => {
+  const tempState = { ...state }
+  switch (action.type) {
+    case "showTime":
+      tempState.timeDisplay.show = false
+      return tempState
+
+
+    default:
+      return tempState
+  }
+};
+
+const SettingsProvider = ({
+  value = initialState, ...props }) => {
+  const [state, dispatch] = useReducer(reducer, value);
+  return <Provider value={[state, dispatch]} {...props} />
+};
+
+const useSettingsContext = () => useContext(SettingsContext)
+
+export { SettingsProvider, useSettingsContext }

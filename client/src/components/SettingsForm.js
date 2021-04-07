@@ -1,18 +1,18 @@
-import { useContext } from "react"
-import SettingsContext from "../utils/context/SettingsContext"
+import { useSettingsContext } from "../utils/context/SettingsContext"
 
 const SettingsForm = () => {
-  const { timeDisplay, dateDisplay, font, photo, onChange } = useContext(SettingsContext)
+  // const [{ timeDisplay }, dispatch] = useSettingsContext();
+  const [state, dispatch] = useSettingsContext();
   return (
     <form>
       <fieldset>
         <legend>Time Display</legend>
         <label for="timeDisplay">Display</label>
-        <input type="checkbox" name="timeDisplay" id="timeDisplay" checked={timeDisplay.show} onChange={onChange} />
+        <input type="checkbox" name="timeDisplay" id="timeDisplay" onChange={() => console.log(state)} />
         <label for="12Hour">12 Hour Format</label>
-        <input type="checkbox" name="12Hour" id="12Hour" checked={timeDisplay.hour12} />
+        <input type="checkbox" name="12Hour" id="12Hour" checked={false} />
         <label for="seconds">Display Seconds</label>
-        <input type="checkbox" name="seconds" id="seconds" checked={timeDisplay.seconds} />
+        <input type="checkbox" name="seconds" id="seconds" checked={true} />
       </fieldset>
     </form>
   )
