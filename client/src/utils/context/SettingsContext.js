@@ -17,7 +17,8 @@ const SettingsContext = createContext({
   photo: {
     interval: undefined,
     searchTerm: undefined
-  }
+  },
+  onChange: () => { }
 });
 
 export default SettingsContext

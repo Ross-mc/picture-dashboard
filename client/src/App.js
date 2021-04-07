@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useReducer } from "react";
 import './App.css';
 import SettingsContext from "./utils/context/SettingsContext"
 import Clock from "./components/Clock"
@@ -25,6 +25,14 @@ const App = () => {
     photo: {
       interval: 0.25,
       searchTerm: "landscape"
+    },
+    onChange: (event) => {
+      event.preventDefault();
+      const stateObj = { ...settingsState }
+      if (event.target.name === "timeDisplay") {
+        stateObj.timeDisplay.show = !stateObj.timeDisplay.show
+        setSettingsState(stateObj)
+      }
     }
   });
 
@@ -81,6 +89,7 @@ const App = () => {
       dateOptions.year = "numeric"
     };
     // tolocaledatestring and localetimestring have two optional arguments. the first defines what locale to use (i.e. en-gb for uk or de-DE for germany) by passing
+    // undefined we default to the local computers format
     const date = new Date();
     setDate(date.toLocaleDateString(undefined, dateOptions));
     setTime(date.toLocaleTimeString(undefined, timeOptions));
