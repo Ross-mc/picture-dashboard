@@ -14,9 +14,9 @@ const Clock = ({ date, time }) => {
   //   format: "long"
   // },
   return (
-    <div className="clock" style={{ color: 'red' }}>
-      {true && <h1>{time}</h1>}
-      {true && <p>{date}</p>}
+    <div className="clock" style={{ color: font.color }}>
+      {timeDisplay.show && <h1>{time}</h1>}
+      {dateDisplay.show && <p>{date}</p>}
     </div>
   )
 }

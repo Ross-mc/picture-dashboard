@@ -24,10 +24,11 @@ const SettingsContext = createContext()
 const { Provider } = SettingsContext;
 
 const reducer = (state, action) => {
+
   const tempState = { ...state }
   switch (action.type) {
     case "showTime":
-      tempState.timeDisplay.show = false
+      tempState.timeDisplay.show = !tempState.timeDisplay.show
       return tempState
 
 
