@@ -1,6 +1,6 @@
 import { createContext, useReducer, useContext } from "react";
 // created the initial state of the application, i.e. the default settings values
-const initialState = {
+const initialState = JSON.parse(localStorage.getItem("pictureSettings")) || {
   timeDisplay: {
     show: true,
     hour12: false,
@@ -19,6 +19,10 @@ const initialState = {
     searchTerm: "landscape",
   },
 };
+// adding the savetolocalstorage method to context
+initialState.saveToLocalStorage = settings => {
+  localStorage.setItem("pictureSettings", JSON.stringify(settings))
+}
 //create a context
 const SettingsContext = createContext();
 // destructuer the provider component that is created by createcontext

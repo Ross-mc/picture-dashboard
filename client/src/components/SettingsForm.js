@@ -1,9 +1,13 @@
 import { useSettingsContext } from "../utils/context/SettingsContext";
+import Button from "./Button";
 
 const SettingsForm = () => {
-  const [{ timeDisplay, dateDisplay, font }, dispatch] = useSettingsContext();
+  const [{ timeDisplay, dateDisplay, font, photo, saveToLocalStorage }, dispatch] = useSettingsContext();
   return (
-    <form>
+    <form onSubmit={(e) => {
+      e.preventDefault()
+      saveToLocalStorage({timeDisplay, dateDisplay, font, photo})
+      }}>
       <fieldset>
         <legend>Time Display</legend>
         <label htmlFor="timeDisplay">Display Time</label>
@@ -90,6 +94,7 @@ const SettingsForm = () => {
           <option value="astronomy">Space</option>
         </select>
       </fieldset>
+      <button type="submit">Save Settings</button>
     </form>
   );
 };
