@@ -6,7 +6,7 @@ const Clock = ({ date, time }) => {
 
   return (
     <div className="clock" style={{ color: font.color }}>
-      {timeDisplay.show && <h1>{time}</h1>}
+      {timeDisplay.show && <h1>{time.startsWith("0") ? time.replace("0", "") : time}</h1>}
       {dateDisplay.show && <p>{date}</p>}
     </div>
   )
