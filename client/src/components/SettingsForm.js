@@ -2,7 +2,7 @@ import { useSettingsContext } from "../utils/context/SettingsContext";
 
 const SettingsForm = () => {
 
-  const [{ timeDisplay, dateDisplay }, dispatch] = useSettingsContext();
+  const [{ timeDisplay, dateDisplay, font }, dispatch] = useSettingsContext();
   return (
     <form>
       <fieldset>
@@ -58,6 +58,11 @@ const SettingsForm = () => {
           checked={dateDisplay.format === "long"}
           onChange={() => dispatch({ type: "year" })}
         />
+      </fieldset>
+      <fieldset>
+        <legend>Font</legend>
+        <label htmlFor="font-color">Font Colour</label>
+        <input type="color" name="font-color" id="font-color" value={font.color} onInput={(e) => dispatch({type: "color", payload: e.target.value})}/>
       </fieldset>
     </form>
   );

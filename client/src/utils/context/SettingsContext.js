@@ -48,6 +48,9 @@ const reducer = (state, action) => {
       tempState.dateDisplay.format =
         tempState.dateDisplay.format === "long" ? "short" : "long";
       return tempState;
+      case "color":
+        tempState.font.color = action.payload;
+        return tempState;
     default:
       return tempState;
   }
