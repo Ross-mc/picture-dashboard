@@ -2,7 +2,7 @@
   text-align: center;
 }
 
-.bg-img{
+.bg-img {
   width: 100%;
   height: 100%;
   position: fixed;
@@ -16,51 +16,73 @@
   object-fit: cover;
 }
 
-.clock{
+.clock {
   color: white;
-  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000;
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
 }
 
-.btn{
-  display:inline-block;
-  padding:0.35em 1.2em;
-  border:0.1em solid;
-  margin:0 0.3em 0.3em 0;
-  border-radius:0.12em;
+.btn {
+  display: inline-block;
+  padding: 0.35em 1.2em;
+  border: 0.1em solid;
+  margin: 0 0.3em 0.3em 0;
+  border-radius: 0.12em;
   box-sizing: border-box;
-  text-decoration:none;
-  font-weight:300;
-  text-align:center;
+  text-decoration: none;
+  font-weight: 300;
+  text-align: center;
   transition: all 0.2s;
   background: none;
   opacity: 0.5;
 }
 
-.btn:hover{
+.btn:hover {
   cursor: pointer;
 }
 
-.btn-primary{
-  color:#FFFFFF;
-  border-color: #FFFFFF;
+.btn-primary {
+  color: #ffffff;
+  border-color: #ffffff;
 }
 
-.btn-primary:hover{
-  color:#222;
+.btn-primary:hover {
+  color: #222;
   border-color: #222;
-  background-color:#FFFFFF;
+  background-color: #ffffff;
   opacity: 0.8;
 }
 
-#Customise{
+#Customise {
   position: fixed;
   top: 1vh;
   right: 1vw;
 }
 
-.btn-taskbar:hover{
+.btn-taskbar:hover {
   background-color: #3a3d3f;
   opacity: 1;
-  color: #FFFFFF
+  color: #ffffff;
 }
- 
+
+.alert {
+  width: 800px;
+  border-radius: 8px;
+  opacity: 0.8;
+  font-size: small;
+  position: fixed;
+  bottom: 50px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.alert > p,
+button {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.alert-warning {
+  background-color: #e74c3c;
+  border: 4px solid #e6240f;
+}

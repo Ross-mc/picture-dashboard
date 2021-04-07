@@ -7,6 +7,7 @@ import Button from "./components/Button";
 import API from "./utils/API";
 import Taskbar from "./components/Taskbar";
 import defaultImgs from "./assets/backupImgs";
+import Alert from "./components/Alert"
 
 const App = () => {
   const [state] = useSettingsContext();
@@ -17,6 +18,7 @@ const App = () => {
   const [currentImage, setImage] = useState("");
   const [timeSinceInterval, setTimeSinceInterval] = useState(0);
   const [displayTaskbar, setTaskbar] = useState(false);
+  const [displayAlert, setAlert] = useState(false);
 
   const selectRandomImage = () => {
     const randomNum = Math.floor(Math.random() * currentImages.length);
@@ -26,11 +28,15 @@ const App = () => {
   const fetchDataFromPixabay = () => {
     API.getImages(state.photo.searchTerm)
       .then((res) => setImages(res.data.hits))
-      .catch((err) => console.log(err));
+      .catch((err) => toggleAlert());
   };
 
   const toggleTaskbar = () => {
     setTaskbar(!displayTaskbar);
+  };
+
+  const toggleAlert = () => {
+    setAlert(!displayAlert);
   };
 
   useEffect(() => {
@@ -87,8 +93,19 @@ const App = () => {
         />
       )}
       <Clock date={currentDate} time={currentTime} />
-      <Background currentImg={currentImage || defaultImgs[Math.floor(Math.random() * defaultImgs.length)]} />
-      
+      <Background
+        currentImg={
+          currentImage ||
+          defaultImgs[Math.floor(Math.random() * defaultImgs.length)]
+        }
+      />
+      {displayAlert && (
+        <Alert
+          type="warning"
+          message="We are sorry but Pixabay API is currently down. A small number of default images will be down instead"
+          onClickHandler={toggleAlert}
+        />
+      )}
     </div>
   );
 };
