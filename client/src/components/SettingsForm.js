@@ -2,12 +2,12 @@ import { useSettingsContext } from "../utils/context/SettingsContext";
 
 const SettingsForm = () => {
 
-  const [{ timeDisplay }, dispatch] = useSettingsContext();
+  const [{ timeDisplay, dateDisplay }, dispatch] = useSettingsContext();
   return (
     <form>
       <fieldset>
         <legend>Time Display</legend>
-        <label for="timeDisplay">Display</label>
+        <label htmlFor="timeDisplay">Display Time</label>
         <input
           type="checkbox"
           name="timeDisplay"
@@ -15,7 +15,7 @@ const SettingsForm = () => {
           checked={timeDisplay.show}
           onChange={() => dispatch({ type: "showTime" })}
         />
-        <label for="12Hour">12 Hour Format</label>
+        <label htmlFor="12Hour">12 Hour Format</label>
         <input
           type="checkbox"
           name="12Hour"
@@ -23,13 +23,40 @@ const SettingsForm = () => {
           checked={timeDisplay.hour12}
           onChange={() => dispatch({ type: "hour12" })}
         />
-        <label for="seconds">Display Seconds</label>
+        <label htmlFor="seconds">Display Seconds</label>
         <input
           type="checkbox"
           name="seconds"
           id="seconds"
           checked={timeDisplay.seconds}
           onChange={() => dispatch({ type: "seconds" })}
+        />
+      </fieldset>
+      <fieldset>
+        <legend>Date Display</legend>
+        <label htmlFor="dateDisplay">Display Date</label>
+        <input
+          type="checkbox"
+          name="dateDisplay"
+          id="dateDisplay"
+          checked={dateDisplay.show}
+          onChange={() => dispatch({ type: "showDate" })}
+        />
+        <label htmlFor="day">Display Day of Week</label>
+        <input
+          type="checkbox"
+          name="day"
+          id="day"
+          checked={dateDisplay.day}
+          onChange={() => dispatch({ type: "dayOfWeek" })}
+        />
+        <label htmlFor="year">Display Year</label>
+        <input
+          type="checkbox"
+          name="year"
+          id="year"
+          checked={dateDisplay.format === "long"}
+          onChange={() => dispatch({ type: "year" })}
         />
       </fieldset>
     </form>

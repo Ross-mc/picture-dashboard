@@ -38,6 +38,16 @@ const reducer = (state, action) => {
     case "seconds":
       tempState.timeDisplay.seconds = !tempState.timeDisplay.seconds;
       return tempState;
+    case "showDate":
+      tempState.dateDisplay.show = !tempState.dateDisplay.show;
+      return tempState;
+    case "dayOfWeek":
+      tempState.dateDisplay.day = !tempState.dateDisplay.day;
+      return tempState;
+    case "year":
+      tempState.dateDisplay.format =
+        tempState.dateDisplay.format === "long" ? "short" : "long";
+      return tempState;
     default:
       return tempState;
   }
