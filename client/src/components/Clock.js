@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useSettingsContext } from "../utils/context/SettingsContext";
 
 const Clock = ({ date, time }) => {

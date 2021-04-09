@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useReducer } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 import { useSettingsContext } from "./utils/context/SettingsContext";
 import Clock from "./components/Clock";

@@ -11,7 +11,7 @@ const Taskbar = ({ toggleTaskbar }) => {
     top: 0,
     height: "100%",
     width: "20vw",
-    minWidth: "200px",
+    minWidth: "220px",
     backgroundColor: "#b2bec3",
     opacity: 0.8,
     zIndex: 100,
@@ -21,8 +21,8 @@ const Taskbar = ({ toggleTaskbar }) => {
   return (
     <div id="taskbar" style={styles}>
       <h1>Settings</h1>
-      <SettingsForm />
       <Button onClickHandler={toggleTaskbar} text={"Close"} type={"taskbar"} />
+      <SettingsForm />
     </div>
   )
 }
